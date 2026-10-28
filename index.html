@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Art History Note</title>
+<meta name="description" content="Art History Note — search Western art by movement, artist and artwork.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* Layout: 앱 홈과 같은 결의 매거진형 한 단 — 머리글, 사조 흐름 띠, 핵심 기능(검색·작품) 두 단, 부가 기능 세 칸, 작품 이미지 안내 */
+:root {
+  --paper: #F5F4F0;
+  --surface: #FFFFFF;
+  --ink: #1B2038;
+  --sub: #585D72;
+  --line: #E2E0D8;
+  --accent: #B83A26;
+  --accent-soft: #F6E3DE;
+  --chip: #ECEAE3;
+  --display: "Noto Serif KR", "Times New Roman", Georgia, serif;
+  --body: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #14161F; --surface: #1E2131; --ink: #ECEBE6; --sub: #A8ACBF; --line: #2D3248;
+    --accent: #F28F76; --accent-soft: #3B2824; --chip: #272B40; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #14161F; --surface: #1E2131; --ink: #ECEBE6; --sub: #A8ACBF; --line: #2D3248;
+  --accent: #F28F76; --accent-soft: #3B2824; --chip: #272B40; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { color-scheme: light; }
+[hidden] { display: none !important; }
+img { max-width: 100%; }
+body {
+  margin: 0;
+  background: var(--paper); color: var(--ink); font-family: var(--body);
+  font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1080px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.25; }
+p { margin: 0; }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+/* 머리글 */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 22px; }
+.mark { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 700; font-size: 19px; text-decoration: none; color: var(--ink); }
+.mark svg { width: 30px; height: 30px; flex: none; }
+.lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--surface); }
+.lang button {
+  font: 500 13px/1 var(--body); border: 0; background: transparent; color: var(--sub);
+  padding: 8px 14px; border-radius: 999px; cursor: pointer;
+}
+.lang button[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); }
+
+/* 첫 화면 */
+.hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 48px; align-items: center; padding-block: 28px 56px; }
+.eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+.hero h1 { font-size: clamp(34px, 5.2vw, 56px); margin-top: 14px; }
+.hero .lead { color: var(--sub); font-size: 18px; margin-top: 18px; max-width: 34em; }
+.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; margin-top: 30px; }
+.langs { font-size: 14px; color: var(--sub); }
+
+/* 휴대폰 화면 */
+.phone {
+  width: 100%; max-width: 330px; margin-inline: auto; aspect-ratio: 540 / 740;
+  border-radius: 30px; overflow: hidden; background: var(--surface);
+  border: 8px solid var(--ink); box-shadow: 0 24px 48px -28px rgba(27, 32, 56, .45);
+}
+.phone img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+
+/* 사조의 흐름 띠 */
+.flow { border-block: 1px solid var(--line); padding-block: 34px; }
+.flow-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; }
+.flow-head h2 { font-size: 24px; }
+.flow-head p { color: var(--sub); font-size: 14px; }
+.strip { overflow-x: auto; margin-top: 26px; padding-bottom: 6px; }
+.strip ol {
+  list-style: none; margin: 0; padding: 0; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(96px, 1fr);
+  position: relative; min-width: 1056px;
+}
+.strip ol::before { content: ""; position: absolute; left: 48px; right: 48px; top: 7px; height: 1px; background: var(--sub); opacity: .5; }
+.strip li { text-align: center; position: relative; padding: 0 4px; }
+.strip .dot { display: block; width: 14px; height: 14px; margin: 0 auto 10px; border-radius: 50%; border: 1.5px solid var(--sub); background: var(--paper); position: relative; }
+.strip li.on .dot { background: var(--accent); border-color: var(--accent); }
+.strip .name { display: block; font-size: 14px; line-height: 1.35; }
+.strip li.on .name { color: var(--accent); font-weight: 700; }
+.strip .year { display: block; font-family: var(--display); color: var(--sub); font-size: 15px; font-variant-numeric: tabular-nums; }
+
+/* 핵심 기능 */
+.feature { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 56px; align-items: center; padding-block: 64px; }
+.feature.flip { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); }
+.feature.flip .shot { order: 2; }
+.feature h2 { font-size: clamp(26px, 3.4vw, 36px); margin-top: 12px; }
+.feature .text > p { color: var(--sub); margin-top: 16px; max-width: 32em; }
+.points { list-style: none; padding: 0; margin: 26px 0 0; display: grid; gap: 16px; }
+.points li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 12px; }
+.points li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 10px; }
+.points b { display: block; font-weight: 700; }
+.points span { color: var(--sub); font-size: 15px; }
+.example { display: inline-flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.example code { font-family: var(--body); font-size: 13px; background: var(--chip); color: var(--ink); padding: 2px 9px; border-radius: 999px; }
+
+/* 부가 기능 */
+.more { padding-block: 56px; border-top: 1px solid var(--line); }
+.more h2 { font-size: 24px; }
+.more > p { color: var(--sub); margin-top: 8px; }
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 26px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: grid; gap: 8px; align-content: start; }
+.card h3 { font-size: 19px; }
+.card p { color: var(--sub); font-size: 15px; }
+.card .tag { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+
+/* 작품 이미지 안내 */
+.notes { padding-block: 56px; border-top: 1px solid var(--line); max-width: 46em; }
+.notes h2 { font-size: 22px; }
+.notes p, .notes li { color: var(--sub); font-size: 15px; }
+.notes .body { display: grid; gap: 12px; margin-top: 14px; }
+.notes ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; }
+footer { border-top: 1px solid var(--line); padding-block: 28px 40px; color: var(--sub); font-size: 13px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+
+@media (max-width: 820px) {
+  .hero, .feature, .feature.flip { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .feature.flip .shot { order: 0; }
+  .cards { grid-template-columns: minmax(0, 1fr); }
+  .phone { max-width: 290px; }
+  .hero { padding-block: 12px 40px; }
+  .feature { padding-block: 44px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .phone { transition: transform .4s ease; }
+  .phone:hover { transform: translateY(-4px); }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="#top" id="top">
+      <svg viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="8" fill="var(--ink)"/><path d="M9 22V14a6 6 0 0 1 12 0v8z" fill="var(--paper)"/><circle cx="15" cy="15.5" r="2.6" fill="var(--accent)"/></svg>
+      <span data-i18n="name">Art History Note</span>
+    </a>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="lang-en" data-lang="en" aria-pressed="true">English</button>
+      <button type="button" id="lang-ko" data-lang="ko" aria-pressed="false">한국어</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <p class="eyebrow" data-i18n="eyebrow">Android app · English &amp; Korean</p>
+      <h1 data-i18n="h1">Western art history, by movement, artist and artwork.</h1>
+      <p class="lead" data-i18n="lead">From the Renaissance to Surrealism, search the movements that shaped Western art, the artists who led them and the paintings they left behind. Then see where each work hangs today.</p>
+      <div class="cta">
+        <span class="langs" data-i18n="langs">Available in English and Korean</span>
+      </div>
+    </div>
+    <div class="phone"><img data-shot="home" src="img/home-en.webp" alt="" width="540" height="740"></div>
+  </section>
+
+  <section class="flow" aria-labelledby="flow-title">
+    <div class="flow-head">
+      <h2 id="flow-title" data-i18n="flowTitle">Movements, in the order they happened</h2>
+      <p data-i18n="flowNote">Each movement in the app explains its features and background, and lists its key artists.</p>
+    </div>
+    <div class="strip">
+      <ol id="strip"></ol>
+    </div>
+  </section>
+
+  <section class="feature">
+    <div class="shot"><div class="phone"><img data-shot="search" src="img/search-en.webp" alt="" width="540" height="740" loading="lazy"></div></div>
+    <div class="text">
+      <p class="eyebrow" data-i18n="s1Eyebrow">Search</p>
+      <h2 data-i18n="s1Title">Find any movement, artist or artwork in one search</h2>
+      <p data-i18n="s1Lead">One search box covers everything in the app. Results are grouped into movements, artists and works, with the matching words highlighted.</p>
+      <ul class="points">
+        <li><div><b data-i18n="s1p1">English, Korean and original titles</b><span data-i18n="s1p1d">Monet or 모네, The Angelus or L'Angélus. Accents are optional, so cezanne finds Cézanne.</span>
+          <div class="example"><code>monet</code><code>모네</code><code>L'Angélus</code><code>cezanne</code></div></div></li>
+        <li><div><b data-i18n="s1p2">Search by artist, find the movement</b><span data-i18n="s1p2d">Typing an artist's name also brings up the movement they belong to and all of their works.</span></div></li>
+        <li><div><b data-i18n="s1p3">Know where to start</b><span data-i18n="s1p3d">Key works are marked, and lists are ordered so the essential pieces come first.</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="feature flip">
+    <div class="shot"><div class="phone"><img data-shot="art" src="img/art-en.webp" alt="" width="540" height="740" loading="lazy"></div></div>
+    <div class="text">
+      <p class="eyebrow" data-i18n="s2Eyebrow">Artworks and artists</p>
+      <h2 data-i18n="s2Title">Every painting with what you need to look at it</h2>
+      <p data-i18n="s2Lead">Each artwork has a short description, a viewing tip, and its date, medium, size and museum. Each artist has a short biography and their major works.</p>
+      <ul class="points">
+        <li><div><b data-i18n="s2p1">Original titles, like the museum label</b><span data-i18n="s2p1d">La Joconde at the Louvre, Het melkmeisje at the Rijksmuseum. Titles are shown in the language of the label you will read on the wall.</span></div></li>
+        <li><div><b data-i18n="s2p2">A viewing tip for each work</b><span data-i18n="s2p2d">One thing to look for, such as the skull hidden in Holbein's The Ambassadors.</span></div></li>
+        <li><div><b data-i18n="s2p3">Linked together</b><span data-i18n="s2p3d">Go from a painting to its artist, its movement and the museum that holds it, and back.</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="more" aria-labelledby="more-title">
+    <h2 id="more-title" data-i18n="moreTitle">Also in the app</h2>
+    <p data-i18n="moreLead">For the day you go and see the paintings in person.</p>
+    <div class="cards">
+      <article class="card">
+        <span class="tag" data-i18n="m1Tag">Every day</span>
+        <h3 data-i18n="m1Title">Artwork of the day</h3>
+        <p data-i18n="m1Text">A different masterpiece on the home screen each day. The same artist or movement never shows up two days in a row.</p>
+      </article>
+      <article class="card">
+        <span class="tag" data-i18n="m2Tag">Museums</span>
+        <h3 data-i18n="m2Title">Where to see it</h3>
+        <p data-i18n="m2Text">The Louvre, Musée d'Orsay, Uffizi, Prado, The Met and more. Filter by country, and see each museum's collection by movement and artist.</p>
+      </article>
+      <article class="card">
+        <span class="tag" data-i18n="m3Tag">Visit notebook</span>
+        <h3 data-i18n="m3Title">Plan your visit, then check it off</h3>
+        <p data-i18n="m3Text">Save the works you want to see at each museum. On the day, use them as a checklist, with each visit kept by date.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="notes">
+    <div>
+      <h2 data-i18n="imgTitle">About the images</h2>
+      <div class="body">
+        <p data-i18n="img1">Artwork images are public domain reproductions, taken first from museums' own open-access collections and otherwise from Wikimedia Commons. Each image shows its source.</p>
+        <p data-i18n="img2">Works whose artists are still under copyright are shown with an abstract substitute illustration, clearly marked as a substitute, instead of the real painting.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span data-i18n="foot1">Art History Note · Android</span>
+    <span data-i18n="foot2">Artwork images: public domain. Text © Phonensoft.</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var movements = [
+    ["Renaissance", "르네상스", 1400], ["Baroque", "바로크", 1600], ["Neoclassicism", "신고전주의", 1760],
+    ["Romanticism", "낭만주의", 1800], ["Realism", "사실주의", 1848], ["Impressionism", "인상주의", 1860],
+    ["Post-Impressionism", "후기인상주의", 1880], ["Art Nouveau", "아르누보", 1890], ["Expressionism", "표현주의", 1905],
+    ["Cubism", "입체주의", 1907], ["Surrealism", "초현실주의", 1924]
+  ];
+  var ko = {
+    name: "미술사 노트",
+    eyebrow: "안드로이드 앱 · 한국어와 영어",
+    h1: "서양 미술사를 사조, 작가, 작품으로 찾아보는 도감",
+    lead: "르네상스부터 초현실주의까지, 서양 미술을 만든 사조와 그 시대를 이끈 작가, 그들이 남긴 명화를 검색하고 살펴보세요. 그 작품이 지금 어느 미술관에 있는지도 알려드립니다.",
+    langs: "한국어와 영어로 볼 수 있어요",
+    flowTitle: "일어난 순서대로 정리한 사조",
+    flowNote: "앱에서는 사조마다 특징과 시대 배경, 대표 작가를 함께 보여줍니다.",
+    s1Eyebrow: "검색",
+    s1Title: "사조도, 작가도, 작품도 검색 한 번으로",
+    s1Lead: "검색창 하나로 앱 안의 모든 것을 찾습니다. 결과는 사조, 작가, 작품으로 나뉘고 맞는 글자가 강조됩니다.",
+    s1p1: "한국어, 영어, 원어 제목 모두", s1p1d: "모네도 Monet도, 만종도 L'Angélus도 찾아집니다. 악센트는 빼고 써도 되어 cezanne으로 Cézanne을 찾습니다.",
+    s1p2: "작가 이름으로 사조까지", s1p2d: "작가 이름을 입력하면 그 작가가 속한 사조와 작품도 함께 나옵니다.",
+    s1p3: "무엇부터 볼지 알 수 있게", s1p3d: "대표작과 주요작을 표시하고, 중요한 작품이 먼저 오도록 정리했습니다.",
+    s2Eyebrow: "작품과 작가",
+    s2Title: "그림을 볼 때 필요한 것을 작품마다",
+    s2Lead: "작품마다 한 줄 해설과 감상 포인트, 제작 연도, 재료, 크기, 소장 미술관을 보여줍니다. 작가마다 생애 요약과 대표 작품이 있습니다.",
+    s2p1: "미술관 설명판과 같은 원어 제목", s2p1d: "루브르에서는 La Joconde, 레이크스 미술관에서는 Het melkmeisje. 현지 설명판의 언어로 제목을 함께 적었습니다.",
+    s2p2: "작품마다 감상 포인트", s2p2d: "홀바인 「대사들」 아래쪽에 숨은 해골처럼, 그림 앞에서 찾아볼 것 하나를 알려드립니다.",
+    s2p3: "모두 이어져 있어요", s2p3d: "작품에서 작가로, 사조로, 소장 미술관으로 오가며 볼 수 있습니다.",
+    moreTitle: "이런 기능도 있어요",
+    moreLead: "직접 미술관에 가서 그림을 보는 날을 위해.",
+    m1Tag: "매일", m1Title: "오늘의 작품", m1Text: "홈 화면에서 날마다 다른 명화를 소개합니다. 같은 작가나 같은 사조가 이틀 연속 나오지 않습니다.",
+    m2Tag: "미술관", m2Title: "어디에 가면 볼 수 있는지", m2Text: "루브르, 오르세, 우피치, 프라도, 메트로폴리탄 등. 나라별로 거르고, 미술관마다 소장 작품을 사조와 작가별로 봅니다.",
+    m3Tag: "관람노트", m3Title: "보고 싶은 작품을 담고, 가서 체크", m3Text: "미술관마다 보고 싶은 작품을 담아 두세요. 방문하는 날에는 체크리스트로 쓰고, 방문 기록은 날짜별로 남습니다.",
+    imgTitle: "작품 이미지에 대해",
+    img1: "작품 이미지는 퍼블릭 도메인 사본입니다. 미술관이 직접 공개한 이미지를 먼저 쓰고, 없으면 위키미디어 공용의 이미지를 씁니다. 이미지마다 출처를 표시합니다.",
+    img2: "작가의 저작권이 남아 있는 작품은 실제 그림 대신 추상적인 대체 그림으로 보여주며, 대체 그림이라는 표시를 함께 붙입니다.",
+    foot1: "미술사 노트 · 안드로이드", foot2: "작품 이미지: 퍼블릭 도메인. 글 © Phonensoft."
+  };
+  var en = {};
+  document.querySelectorAll("[data-i18n]").forEach(function (el) { en[el.getAttribute("data-i18n")] = el.textContent; });
+  var alts = {
+    en: { home: "Home screen with today's artwork and the movement timeline", search: "Search results for monet", art: "Artwork page for The Scream" },
+    ko: { home: "오늘의 작품과 사조의 흐름이 보이는 홈 화면", search: "monet 검색 결과", art: "「절규」 작품 화면" }
+  };
+
+  function renderStrip(lang) {
+    var ol = document.getElementById("strip");
+    ol.innerHTML = "";
+    movements.forEach(function (m, i) {
+      var li = document.createElement("li");
+      if (i === 5) li.className = "on";
+      li.innerHTML = '<span class="dot"></span><span class="name"></span><span class="year"></span>';
+      li.querySelector(".name").textContent = lang === "ko" ? m[1] : m[0];
+      li.querySelector(".year").textContent = m[2];
+      ol.appendChild(li);
+    });
+  }
+
+  function apply(lang) {
+    var dict = lang === "ko" ? ko : en;
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      var t = dict[el.getAttribute("data-i18n")];
+      if (t) el.textContent = t;
+    });
+    document.querySelectorAll("img[data-shot]").forEach(function (img) {
+      var k = img.getAttribute("data-shot");
+      img.src = "img/" + k + "-" + lang + ".webp";
+      img.alt = alts[lang][k];
+    });
+    document.querySelectorAll(".lang button").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === lang));
+    });
+    renderStrip(lang);
+    try { localStorage.setItem("ahn-lang", lang); } catch (e) {}
+  }
+
+  var saved = null;
+  try { saved = localStorage.getItem("ahn-lang"); } catch (e) {}
+  var system = (navigator.languages && navigator.languages[0]) || navigator.language || "en";
+  apply(saved || (/^ko\b/i.test(system) ? "ko" : "en"));
+  document.querySelectorAll(".lang button").forEach(function (b) {
+    b.addEventListener("click", function () { apply(b.getAttribute("data-lang")); });
+  });
+})();
+</script>
+</body>
+</html>

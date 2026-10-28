@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy Policy · Art History Note</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* index.html과 같은 색·글꼴. 영어와 한국어 본문을 함께 두고 고른 언어만 보여준다. */
+:root {
+  --paper: #F5F4F0;
+  --surface: #FFFFFF;
+  --ink: #1B2038;
+  --sub: #585D72;
+  --line: #E2E0D8;
+  --accent: #B83A26;
+  --accent-soft: #F6E3DE;
+  --display: "Noto Serif KR", "Times New Roman", Georgia, serif;
+  --body: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #14161F; --surface: #1E2131; --ink: #ECEBE6; --sub: #A8ACBF; --line: #2D3248;
+    --accent: #F28F76; --accent-soft: #3B2824; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #14161F; --surface: #1E2131; --ink: #ECEBE6; --sub: #A8ACBF; --line: #2D3248;
+  --accent: #F28F76; --accent-soft: #3B2824; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body);
+  font-size: 16px; line-height: 1.75; -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 760px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1, h2 { font-family: var(--display); text-wrap: balance; line-height: 1.3; margin: 0; }
+p { margin: 0; }
+a { color: var(--accent); overflow-wrap: anywhere; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 22px; }
+.mark { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 700; font-size: 19px; text-decoration: none; color: var(--ink); }
+.mark svg { width: 30px; height: 30px; flex: none; }
+.lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--surface); }
+.lang button {
+  font: 500 13px/1 var(--body); border: 0; background: transparent; color: var(--sub);
+  padding: 8px 14px; border-radius: 999px; cursor: pointer;
+}
+.lang button[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); }
+
+main { padding-block: 24px 48px; }
+h1 { font-size: clamp(30px, 5vw, 42px); }
+.intro { color: var(--sub); margin-top: 14px; }
+section { border-top: 1px solid var(--line); margin-top: 34px; padding-top: 30px; display: grid; gap: 10px; }
+h2 { font-size: 21px; display: flex; gap: 12px; align-items: baseline; }
+h2 .n { font-size: 16px; color: var(--accent); font-variant-numeric: tabular-nums; }
+section p, section li { color: var(--sub); }
+ul { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
+.effective { border-top: 1px solid var(--line); margin-top: 34px; padding-top: 24px; color: var(--sub); font-size: 14px; }
+footer { border-top: 1px solid var(--line); padding-block: 24px 40px; color: var(--sub); font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="index.html">
+      <svg viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="8" fill="var(--ink)"/><path d="M9 22V14a6 6 0 0 1 12 0v8z" fill="var(--paper)"/><circle cx="15" cy="15.5" r="2.6" fill="var(--accent)"/></svg>
+      <span data-en="Art History Note" data-ko="미술사 노트">Art History Note</span>
+    </a>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="lang-en" data-lang="en" aria-pressed="true">English</button>
+      <button type="button" id="lang-ko" data-lang="ko" aria-pressed="false">한국어</button>
+    </div>
+  </header>
+
+  <!-- English -->
+  <main data-lang-block="en">
+    <h1>Privacy Policy</h1>
+    <p class="intro">This application (the "App") values your privacy and complies with applicable laws.</p>
+
+    <section>
+      <h2><span class="n">1</span>Information we collect</h2>
+      <p>The App does not directly collect personal information such as your name, email address or phone number.</p>
+      <p>However, some information may be collected automatically through the advertising service.</p>
+    </section>
+
+    <section>
+      <h2><span class="n">2</span>Advertising</h2>
+      <p>The App uses Google AdMob to show ads.</p>
+      <p>Google AdMob may collect the following information:</p>
+      <ul>
+        <li>Advertising ID</li>
+        <li>Device information (device model, operating system version, etc.)</li>
+        <li>IP address</li>
+        <li>App usage information</li>
+      </ul>
+      <p>This information is used to provide personalized ads and to measure ad performance.</p>
+      <p>You can read Google's privacy policy here: <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></p>
+    </section>
+
+    <section>
+      <h2><span class="n">3</span>Sharing with third parties</h2>
+      <p>The App does not directly provide personal information to third parties.</p>
+      <p>However, the advertising platform may process some data in order to provide ads.</p>
+    </section>
+
+    <section>
+      <h2><span class="n">4</span>Children's privacy</h2>
+      <p>The App does not collect personal information from children under the age of 13.</p>
+    </section>
+
+    <section>
+      <h2><span class="n">5</span>Your choices</h2>
+      <p>You can limit data collection in your device settings in the following ways:</p>
+      <ul>
+        <li>Reset your advertising ID</li>
+        <li>Opt out of personalized ads</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="n">6</span>Changes to this policy</h2>
+      <p>This Privacy Policy may change. Any changes will be posted on this page.</p>
+    </section>
+
+    <section>
+      <h2><span class="n">7</span>Contact</h2>
+      <p>For questions about the App, please contact us at the email address below.</p>
+      <p>Email: jbiglion22@gmail.com</p>
+    </section>
+
+    <p class="effective">Effective date: October 28, 2026</p>
+  </main>
+
+  <!-- 한국어 -->
+  <main data-lang-block="ko" hidden>
+    <h1>개인정보처리방침</h1>
+    <p class="intro">본 애플리케이션(이하 "앱")은 사용자의 개인정보를 중요하게 생각하며, 관련 법령을 준수합니다.</p>
+
+    <section>
+      <h2><span class="n">1</span>수집하는 정보</h2>
+      <p>본 앱은 직접적으로 사용자의 이름, 이메일, 전화번호 등의 개인정보를 수집하지 않습니다.</p>
+      <p>다만, 광고 서비스 이용 과정에서 일부 정보가 자동 수집될 수 있습니다.</p>
+    </section>
+
+    <section>
+      <h2><span class="n">2</span>광고 서비스 이용</h2>
+      <p>본 앱은 광고 제공을 위해 Google AdMob을 사용합니다.</p>
+      <p>Google AdMob은 다음과 같은 정보를 수집할 수 있습니다:</p>
+      <ul>
+        <li>광고 식별자 (Advertising ID)</li>
+        <li>기기 정보 (기기 모델, 운영체제 버전 등)</li>
+        <li>IP 주소</li>
+        <li>앱 사용 정보</li>
+      </ul>
+      <p>수집된 정보는 맞춤형 광고 제공 및 광고 성과 분석에 사용됩니다.</p>
+      <p>Google의 개인정보처리방침은 아래에서 확인할 수 있습니다: <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></p>
+    </section>
+
+    <section>
+      <h2><span class="n">3</span>개인정보의 제3자 제공</h2>
+      <p>본 앱은 직접적으로 개인정보를 제3자에게 제공하지 않습니다.</p>
+      <p>다만, 광고 제공을 위해 광고 플랫폼에서 일부 데이터를 처리할 수 있습니다.</p>
+    </section>
+
+    <section>
+      <h2><span class="n">4</span>아동의 개인정보 보호</h2>
+      <p>본 앱은 만 13세 미만 아동을 대상으로 개인정보를 수집하지 않습니다.</p>
+    </section>
+
+    <section>
+      <h2><span class="n">5</span>이용자의 권리</h2>
+      <p>사용자는 기기 설정에서 다음과 같은 방법으로 데이터 수집을 제한할 수 있습니다:</p>
+      <ul>
+        <li>광고 ID 재설정</li>
+        <li>맞춤 광고 제한</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="n">6</span>개인정보처리방침 변경</h2>
+      <p>본 개인정보처리방침은 변경될 수 있으며, 변경 시 본 페이지를 통해 공지합니다.</p>
+    </section>
+
+    <section>
+      <h2><span class="n">7</span>문의</h2>
+      <p>앱과 관련한 문의는 아래 이메일로 연락해 주시기 바랍니다.</p>
+      <p>이메일: jbiglion22@gmail.com</p>
+    </section>
+
+    <p class="effective">시행일: 2026년 10월 28일</p>
+  </main>
+
+  <footer><span data-en="Art History Note · Android" data-ko="미술사 노트 · 안드로이드">Art History Note · Android</span></footer>
+</div>
+
+<script>
+(function () {
+  var titles = { en: "Privacy Policy · Art History Note", ko: "개인정보처리방침 · 미술사 노트" };
+  function apply(lang) {
+    document.documentElement.lang = lang;
+    document.title = titles[lang];
+    document.querySelectorAll("[data-lang-block]").forEach(function (el) {
+      el.hidden = el.getAttribute("data-lang-block") !== lang;
+    });
+    document.querySelectorAll("[data-en]").forEach(function (el) {
+      el.textContent = el.getAttribute("data-" + lang);
+    });
+    document.querySelectorAll(".lang button").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === lang));
+    });
+    // index.html과 같은 이름으로 기억해, 두 페이지가 같은 언어로 열리게 한다.
+    try { localStorage.setItem("ahn-lang", lang); } catch (e) {}
+  }
+  var saved = null;
+  try { saved = localStorage.getItem("ahn-lang"); } catch (e) {}
+  var system = (navigator.languages && navigator.languages[0]) || navigator.language || "en";
+  apply(saved || (/^ko\b/i.test(system) ? "ko" : "en"));
+  document.querySelectorAll(".lang button").forEach(function (b) {
+    b.addEventListener("click", function () { apply(b.getAttribute("data-lang")); });
+  });
+})();
+</script>
+</body>
+</html>
